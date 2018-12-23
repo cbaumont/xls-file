@@ -6,8 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import local.xls_file.Utils.XlsUtils;
 import local.xls_file.entidades.Entidade;
+import local.xls_file.utils.XlsUtils;
 
 public class Service {
 

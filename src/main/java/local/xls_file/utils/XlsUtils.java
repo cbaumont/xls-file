@@ -1,4 +1,4 @@
-package local.xls_file.Utils;
+package local.xls_file.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -48,11 +50,13 @@ public class XlsUtils {
 		}
 	}
 
-	public static void exportaArquivo() {
+	public static void exportaArquivo(String nomeArquivo) {
 		System.out.println("Escrevendo o workbook no novo arquivo");
 		valoresPlanilha();
+		System.out.println("Formatando planilha");
+		formataPlanilha();
 		try {
-			FileOutputStream planilha = new FileOutputStream(new File("PlanilhaTeste.xlsx"));
+			FileOutputStream planilha = new FileOutputStream(new File(nomeArquivo+".xlsx"));
 			workbook.write(planilha);
 			planilha.close();
 			workbook.close();
@@ -61,6 +65,14 @@ public class XlsUtils {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void formataPlanilha() {
+		CellStyle style = workbook.createCellStyle();
+		style.setFillForegroundColor(IndexedColors.GOLD.getIndex());
+		spreadSheet.setDefaultColumnStyle(0, style);
+		spreadSheet.setDefaultColumnWidth(50);
+		
 	}
 
 }
